@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: discovery-server
+
+server:
+  port: 9091
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    wait-time-in-ms-when-sync-empty: 3000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
