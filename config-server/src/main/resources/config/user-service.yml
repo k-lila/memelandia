@@ -1,0 +1,18 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: user-service
+  # data:
+  #   mongodb:
+  #     uri: http://localhost:27020/teste
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9091/eureka
+
+springdoc:
+  swagger-ui:
+    enabled: true

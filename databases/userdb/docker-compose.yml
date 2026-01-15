@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo:8.2
+    container_name: user-db
+    ports:
+      - "27020:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user_service
+      MONGO_INITDB_ROOT_PASSWORD: user_1234321
+    restart: always
+
+  mongo-tests:
+    image: mongo:8.2
+    container_name: user-db-tests
+    ports:
+      - "27021:27017"
+    volumes:
+      - mongodb_data_tests:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user_service_test
+      MONGO_INITDB_ROOT_PASSWORD: user_1234321
+    restart: always
+
+volumes:
+  mongodb_data:
+    driver: local
+  mongodb_data_tests:
+    driver: local
