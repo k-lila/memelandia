@@ -1,5 +1,6 @@
 package com.memelandia.memeservice.controller;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -77,6 +78,18 @@ public class MemeController {
     public ResponseEntity<Void> removeMeme(@PathVariable(value = "id", required = true) String id) {
         registerService.deleteMeme(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/category/{category}")
+    public ResponseEntity<Page<Meme>> searchByCategory(@PathVariable String category, @ParameterObject Pageable pageable) {
+        Page<Meme> memes = searchService.searchByCategory(category, pageable);
+        return ResponseEntity.ok(memes);
+    }
+
+    @GetMapping(value = "/user/{user}")
+    public ResponseEntity<Page<Meme>> searchByUser(@PathVariable String user, @ParameterObject Pageable pageable) {
+        Page<Meme> memes = searchService.searchByUser(user, pageable);
+        return ResponseEntity.ok(memes);
     }
 
 }

@@ -41,4 +41,20 @@ public class SearchService {
         return meme.get();    
     }
 
+    public Page<Meme> searchByCategory(String category, Pageable pageable) {
+        Page<Meme> memes = memeRepository.findByCategory(category, pageable);
+        if (memes.isEmpty()) {
+            throw new DomainEntityNotFound(Meme.class, "Category ID" , category);
+        }
+        return memes;
+    }
+
+    public Page<Meme> searchByUser(String user, Pageable pageable) {
+        Page<Meme> memes = memeRepository.findByUser(user, pageable);
+        if (memes.isEmpty()) {
+            throw new DomainEntityNotFound(Meme.class, "User ID" , user);
+        }
+        return memes;
+    }
+
 }

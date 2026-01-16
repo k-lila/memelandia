@@ -3,6 +3,7 @@ package com.memelandia.memeservice.domain;
 import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -32,9 +33,11 @@ public class Meme {
     @Schema(description = "registration date", nullable = false)
     private Instant registration_date;
 
+    @Indexed
     @Schema(description = "category ID")
     private String category;
 
+    @Indexed
     @Schema(description = "user ID")
     private String user;
 
