@@ -1,0 +1,41 @@
+package com.memelandia.memeservice.domain;
+
+import java.time.Instant;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+
+@Document(collection = "memes")
+@Getter
+@Setter
+public class Meme {
+
+    @Id
+    private String id;
+
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Schema(description = "name", minLength = 1, maxLength = 50, nullable = false)
+    private String name;
+
+    @NotNull
+    @Schema(description = "description", minContains = 0, maxContains = 500, nullable = false)
+    private String description;
+
+    @NotNull
+    @Schema(description = "registration date", nullable = false)
+    private Instant registration_date;
+
+    @Schema(description = "category ID")
+    private String category;
+
+    @Schema(description = "user ID")
+    private String user;
+
+}
