@@ -12,6 +12,6 @@ import com.memelandia.memeservice.domain.Meme;
 @Repository
 public interface IMemeRepository extends MongoRepository<Meme, String> {
     Optional<Meme> findByName(String name);
-    Page<Meme> findByCategory(String categoryID, Pageable pageable);
-    Page<Meme> findByUser(String userID, Pageable pageable);
+    Page<Meme> findByCategoryID(String categoryID, Pageable pageable);
+    Page<Meme> findByUserID(String userID, Pageable pageable);
 }

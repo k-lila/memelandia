@@ -35,10 +35,10 @@ public class Meme {
 
     @Indexed
     @Schema(description = "ID da categoria")
-    private String category;
+    private String categoryID;
 
     @Indexed
     @Schema(description = "ID do usuário")
-    private String user;
+    private String userID;
 
 }

@@ -34,7 +34,7 @@ public class SearchService {
     }
 
     public Page<Category> searchByUser(String userID, Pageable pageable) {
-        Page<Category> categories = categoryRepository.findByUser(userID, pageable);
+        Page<Category> categories = categoryRepository.findByUserID(userID, pageable);
         if (categories.isEmpty()) {
             throw new DomainEntityNotFound(Category.class, "User ID", userID);
         }

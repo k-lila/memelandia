@@ -42,7 +42,7 @@ public class SearchService {
     }
 
     public Page<Meme> searchByCategory(String categoryID, Pageable pageable) {
-        Page<Meme> memes = memeRepository.findByCategory(categoryID, pageable);
+        Page<Meme> memes = memeRepository.findByCategoryID(categoryID, pageable);
         if (memes.isEmpty()) {
             throw new DomainEntityNotFound(Meme.class, "Category ID" , categoryID);
         }
@@ -50,7 +50,7 @@ public class SearchService {
     }
 
     public Page<Meme> searchByUser(String user, Pageable pageable) {
-        Page<Meme> memes = memeRepository.findByUser(user, pageable);
+        Page<Meme> memes = memeRepository.findByUserID(user, pageable);
         if (memes.isEmpty()) {
             throw new DomainEntityNotFound(Meme.class, "User ID" , user);
         }
