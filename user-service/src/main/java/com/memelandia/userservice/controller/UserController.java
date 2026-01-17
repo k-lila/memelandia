@@ -53,8 +53,8 @@ public class UserController {
 
     @Operation(summary = "Buscar usuário por ID")
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> searchById(@PathVariable(value = "id", required = true) String id) {
-        User user = searchService.searchById(id);
+    public ResponseEntity<User> searchById(@PathVariable(value = "id", required = true) String userID) {
+        User user = searchService.searchById(userID);
         return ResponseEntity.ok(user);
     }
 
@@ -74,8 +74,8 @@ public class UserController {
 
     @Operation(summary = "Deletar um usuário")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> removeUser(@PathVariable(value = "id", required = true) String id) {
-        registerService.deleteUser(id);
+    public ResponseEntity<Void> removeUser(@PathVariable(value = "id", required = true) String userID) {
+        registerService.deleteUser(userID);
         return ResponseEntity.noContent().build();
     }
 

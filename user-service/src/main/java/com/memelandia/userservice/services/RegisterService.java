@@ -33,10 +33,10 @@ public class RegisterService {
         return this.userRepository.save(user);
     }
 
-    public void deleteUser(String id) {
-        Optional<User> user = userRepository.findById(id);
+    public void deleteUser(String userID) {
+        Optional<User> user = userRepository.findById(userID);
         if (user.isEmpty()) {
-            throw new DomainEntityNotFound(User.class,"ID" , id);
+            throw new DomainEntityNotFound(User.class,"ID" , userID);
         }
         userRepository.delete(user.get());
     }

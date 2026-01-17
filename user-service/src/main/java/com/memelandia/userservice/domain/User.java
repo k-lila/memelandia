@@ -21,7 +21,7 @@ public class User {
 
     @NotNull
     @Size(min = 1, max = 50)
-    @Schema(description = "Name", minLength = 1, maxLength = 50, nullable = false)
+    @Schema(description = "Nome", minLength = 1, maxLength = 50, nullable = false)
     private String name;
 
     @NotNull
@@ -35,7 +35,7 @@ public class User {
     private String email;
 
     @NotNull
-    @Schema(description = "Registration date", nullable = false)
+    @Schema(description = "Data de registro", nullable = false)
     private Instant registration_date;
 
 }

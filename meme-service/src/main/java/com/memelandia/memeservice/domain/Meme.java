@@ -22,23 +22,23 @@ public class Meme {
 
     @NotNull
     @Size(min = 1, max = 50)
-    @Schema(description = "name", minLength = 1, maxLength = 50, nullable = false)
+    @Schema(description = "nome", minLength = 1, maxLength = 50, nullable = false)
     private String name;
 
     @NotNull
-    @Schema(description = "description", minContains = 0, maxContains = 500, nullable = false)
+    @Schema(description = "descrição", minContains = 0, maxContains = 500, nullable = false)
     private String description;
 
     @NotNull
-    @Schema(description = "registration date", nullable = false)
+    @Schema(description = "data de registro", nullable = false)
     private Instant registration_date;
 
     @Indexed
-    @Schema(description = "category ID")
+    @Schema(description = "ID da categoria")
     private String category;
 
     @Indexed
-    @Schema(description = "user ID")
+    @Schema(description = "ID do usuário")
     private String user;
 
 }

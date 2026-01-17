@@ -32,10 +32,10 @@ public class RegisterService {
         return this.memeRepository.save(meme);
     }
 
-    public void deleteMeme(String id) {
-        Optional<Meme> meme = memeRepository.findById(id);
+    public void deleteMeme(String memeID) {
+        Optional<Meme> meme = memeRepository.findById(memeID);
         if (meme.isEmpty()) {
-            throw new DomainEntityNotFound(Meme.class,"ID" , id);
+            throw new DomainEntityNotFound(Meme.class,"ID" , memeID);
         }
         memeRepository.delete(meme.get());
     }

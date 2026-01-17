@@ -33,7 +33,7 @@ public class Category {
     private Instant registration_date;
 
     @Indexed
-    @Schema(description = "user ID")
-    private String user;
+    @Schema(description = "ID do usuário")
+    private String userID;
 
 }

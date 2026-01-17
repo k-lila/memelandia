@@ -25,18 +25,18 @@ public class SearchService {
         return categoryRepository.findAll(pageable);
     }
 
-    public Category searchById(String id) {
-        Optional<Category> Category = categoryRepository.findById(id);
+    public Category searchById(String categoryID) {
+        Optional<Category> Category = categoryRepository.findById(categoryID);
         if (Category.isEmpty()) {
-            throw new DomainEntityNotFound(Category.class,"ID" , id);
+            throw new DomainEntityNotFound(Category.class,"ID" , categoryID);
         }
         return Category.get();
     }
 
-    public Page<Category> searchByUser(String user, Pageable pageable) {
-        Page<Category> categories = categoryRepository.findByUser(user, pageable);
+    public Page<Category> searchByUser(String userID, Pageable pageable) {
+        Page<Category> categories = categoryRepository.findByUser(userID, pageable);
         if (categories.isEmpty()) {
-            throw new DomainEntityNotFound(Category.class, "User ID", user);
+            throw new DomainEntityNotFound(Category.class, "User ID", userID);
         }
         return categories;
     }

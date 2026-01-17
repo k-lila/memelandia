@@ -25,10 +25,10 @@ public class SearchService {
         return memeRepository.findAll(pageable);
     }
 
-    public Meme searchById(String id) {
-        Optional<Meme> meme = memeRepository.findById(id);
+    public Meme searchById(String memeID) {
+        Optional<Meme> meme = memeRepository.findById(memeID);
         if (meme.isEmpty()) {
-            throw new DomainEntityNotFound(Meme.class, "ID" , id);
+            throw new DomainEntityNotFound(Meme.class, "ID" , memeID);
         }
         return meme.get();
     }
@@ -41,10 +41,10 @@ public class SearchService {
         return meme.get();    
     }
 
-    public Page<Meme> searchByCategory(String category, Pageable pageable) {
-        Page<Meme> memes = memeRepository.findByCategory(category, pageable);
+    public Page<Meme> searchByCategory(String categoryID, Pageable pageable) {
+        Page<Meme> memes = memeRepository.findByCategory(categoryID, pageable);
         if (memes.isEmpty()) {
-            throw new DomainEntityNotFound(Meme.class, "Category ID" , category);
+            throw new DomainEntityNotFound(Meme.class, "Category ID" , categoryID);
         }
         return memes;
     }

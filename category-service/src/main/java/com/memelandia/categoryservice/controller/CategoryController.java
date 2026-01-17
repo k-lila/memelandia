@@ -55,8 +55,8 @@ public class CategoryController {
 
     @Operation(summary = "Buscar categoria por ID")
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Category> searchById(@PathVariable(value = "id", required = true) String id) {
-        Category category = searchService.searchById(id);
+    public ResponseEntity<Category> searchById(@PathVariable(value = "id", required = true) String categoryID) {
+        Category category = searchService.searchById(categoryID);
         return ResponseEntity.ok(category);
     }
 
@@ -69,14 +69,14 @@ public class CategoryController {
 
     @Operation(summary = "Deletar uma categoria")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> removeCategory(@PathVariable(value = "id", required = true) String id) {
-        registerService.deleteCategory(id);
+    public ResponseEntity<Void> removeCategory(@PathVariable(value = "id", required = true) String categoryID) {
+        registerService.deleteCategory(categoryID);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping(value = "/user/{user}")
-    public ResponseEntity<Page<Category>> searchByUser(@PathVariable String user, @ParameterObject Pageable pageable) {
-        Page<Category> categories = searchService.searchByUser(user, pageable);
+    public ResponseEntity<Page<Category>> searchByUser(@PathVariable String userID, @ParameterObject Pageable pageable) {
+        Page<Category> categories = searchService.searchByUser(userID, pageable);
         return ResponseEntity.ok(categories);
     }
 

@@ -54,8 +54,8 @@ public class MemeController {
 
     @Operation(summary = "Buscar meme por ID")
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Meme> searchById(@PathVariable(value = "id", required = true) String id) {
-        Meme meme = searchService.searchById(id);
+    public ResponseEntity<Meme> searchById(@PathVariable(value = "id", required = true) String memeID) {
+        Meme meme = searchService.searchById(memeID);
         return ResponseEntity.ok(meme);
     }
 
@@ -75,20 +75,20 @@ public class MemeController {
 
     @Operation(summary = "Deletar um meme")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> removeMeme(@PathVariable(value = "id", required = true) String id) {
-        registerService.deleteMeme(id);
+    public ResponseEntity<Void> removeMeme(@PathVariable(value = "id", required = true) String memeID) {
+        registerService.deleteMeme(memeID);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping(value = "/category/{category}")
-    public ResponseEntity<Page<Meme>> searchByCategory(@PathVariable String category, @ParameterObject Pageable pageable) {
-        Page<Meme> memes = searchService.searchByCategory(category, pageable);
+    public ResponseEntity<Page<Meme>> searchByCategory(@PathVariable String categoryID, @ParameterObject Pageable pageable) {
+        Page<Meme> memes = searchService.searchByCategory(categoryID, pageable);
         return ResponseEntity.ok(memes);
     }
 
     @GetMapping(value = "/user/{user}")
-    public ResponseEntity<Page<Meme>> searchByUser(@PathVariable String user, @ParameterObject Pageable pageable) {
-        Page<Meme> memes = searchService.searchByUser(user, pageable);
+    public ResponseEntity<Page<Meme>> searchByUser(@PathVariable String userID, @ParameterObject Pageable pageable) {
+        Page<Meme> memes = searchService.searchByUser(userID, pageable);
         return ResponseEntity.ok(memes);
     }
 

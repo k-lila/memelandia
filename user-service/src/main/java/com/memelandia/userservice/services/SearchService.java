@@ -25,10 +25,10 @@ public class SearchService {
         return userRepository.findAll(pageable);
     }
 
-    public User searchById(String id) {
-        Optional<User> user = userRepository.findById(id);
+    public User searchById(String userID) {
+        Optional<User> user = userRepository.findById(userID);
         if (user.isEmpty()) {
-            throw new DomainEntityNotFound(User.class,"ID" , id);
+            throw new DomainEntityNotFound(User.class,"ID" , userID);
         }
         return user.get();
     }

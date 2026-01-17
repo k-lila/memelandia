@@ -33,10 +33,10 @@ public class RegisterService {
         return this.categoryRepository.save(category);
     }
 
-    public void deleteCategory(String id) {
-        Optional<Category> category = categoryRepository.findById(id);
+    public void deleteCategory(String categoryID) {
+        Optional<Category> category = categoryRepository.findById(categoryID);
         if (category.isEmpty()) {
-            throw new DomainEntityNotFound(Category.class,"ID" , id);
+            throw new DomainEntityNotFound(Category.class,"ID" , categoryID);
         }
         categoryRepository.delete(category.get());
     }
