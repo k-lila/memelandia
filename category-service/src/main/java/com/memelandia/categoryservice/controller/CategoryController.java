@@ -1,5 +1,6 @@
 package com.memelandia.categoryservice.controller;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -71,6 +72,12 @@ public class CategoryController {
     public ResponseEntity<Void> removeCategory(@PathVariable(value = "id", required = true) String id) {
         registerService.deleteCategory(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/user/{user}")
+    public ResponseEntity<Page<Category>> searchByUser(@PathVariable String user, @ParameterObject Pageable pageable) {
+        Page<Category> categories = searchService.searchByUser(user, pageable);
+        return ResponseEntity.ok(categories);
     }
 
 }
