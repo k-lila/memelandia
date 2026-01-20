@@ -33,12 +33,12 @@ public class SearchService {
         return meme.get();
     }
 
-    public Meme searchByName(String name) {
-        Optional<Meme> meme = memeRepository.findByName(name);
-        if (meme.isEmpty()) {
+    public Page<Meme> searchByName(String name, Pageable pageable) {
+        Page<Meme> memes = memeRepository.findByName(name, pageable);
+        if (memes.isEmpty()) {
             throw new DomainEntityNotFound(Meme.class,"Name" , name);
         }
-        return meme.get();    
+        return memes;    
     }
 
     public Page<Meme> searchByCategory(String categoryID, Pageable pageable) {

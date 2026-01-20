@@ -11,4 +11,5 @@ import com.memelandia.categoryservice.domain.Category;
 @Repository
 public interface ICategoryRepository extends MongoRepository<Category, String> {
     Page<Category> findByUserID(String userID, Pageable pageable);
+    Page<Category> findByName(String name, Pageable pageable);
 }

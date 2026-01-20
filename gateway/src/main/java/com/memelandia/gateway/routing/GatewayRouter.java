@@ -9,12 +9,11 @@ import org.springframework.context.annotation.Configuration;
 public class GatewayRouter {
 
 	@Bean
-	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+	public RouteLocator routes(RouteLocatorBuilder builder) {
 		return builder.routes()
-			.route(p -> p
-				.path("/get")
-				.filters(f -> f.addRequestHeader("Hello", "World"))
-				.uri("http://httpbin.org:80"))
+		.route("user-service", route -> route.path("/users/**").uri("lb://user-service"))
+		.route("category-service", route -> route.path("/categories/**").uri("lb://category-service"))
+		.route("meme-service", route -> route.path("/memes/**").uri("lb://meme-service"))
 		.build();
 	}
 

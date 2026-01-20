@@ -47,6 +47,7 @@ public class CategoryController {
         return ResponseEntity.ok(categories);
     }
 
+    @Operation(summary = "Registrar uma categoria")
     @PostMapping
     public ResponseEntity<Category> registerCategory(@RequestBody @Valid Category category) {
         Category registered = registerService.registerCategory(category);
@@ -74,9 +75,17 @@ public class CategoryController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(value = "/user/{user}")
-    public ResponseEntity<Page<Category>> searchByUser(@PathVariable String userID, @ParameterObject Pageable pageable) {
+    @Operation(summary = "Buscar categorias por usuário")
+    @GetMapping(value = "/user/{userID}")
+    public ResponseEntity<Page<Category>> searchByUser(@PathVariable(required = true) String userID, @ParameterObject Pageable pageable) {
         Page<Category> categories = searchService.searchByUser(userID, pageable);
+        return ResponseEntity.ok(categories);
+    }
+
+    @Operation(summary = "Buscar categorias por nome")
+    @GetMapping(value = "/name/{name}")
+    public ResponseEntity<Page<Category>> searchByName(@PathVariable(required = true) String name, @ParameterObject Pageable pageable) {
+        Page<Category> categories = searchService.searchByName(name, pageable);
         return ResponseEntity.ok(categories);
     }
 

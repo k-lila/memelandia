@@ -4,8 +4,9 @@ server:
 spring:
   application:
     name: user-service
-  # data:
-  #   mongodb:
+  data:
+    mongodb:
+      auto-index-creation: true
   #     uri: http://localhost:27020/teste
 
 eureka:

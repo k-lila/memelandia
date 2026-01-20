@@ -3,6 +3,7 @@ package com.memelandia.userservice.domain;
 import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,6 +28,7 @@ public class User {
     @NotNull
     @Schema(description = "CPF", nullable = false)
     @Pattern(regexp = "\\d{11}", message = "CPF inválido")
+    @Indexed(unique = true)
     private String cpf;
 
     @NotNull
