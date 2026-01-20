@@ -16,4 +16,4 @@ eureka:
 
 springdoc:
   swagger-ui:
-    enabled: true
+    enabled: false

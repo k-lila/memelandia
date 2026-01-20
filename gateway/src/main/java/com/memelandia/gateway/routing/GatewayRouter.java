@@ -14,7 +14,32 @@ public class GatewayRouter {
 		.route("user-service", route -> route.path("/users/**").uri("lb://user-service"))
 		.route("category-service", route -> route.path("/categories/**").uri("lb://category-service"))
 		.route("meme-service", route -> route.path("/memes/**").uri("lb://meme-service"))
-		.build();
-	}
+		// ##### swagger
+        .route("user-service-docs", r -> r
+            .path("/v3/api-docs/user/**")
+            .filters(f -> f.rewritePath(
+                "/v3/api-docs/user(?<segment>/?.*)",
+                "/v3/api-docs${segment}"
+            ))
+            .uri("lb://user-service")
+        )
+        .route("category-service-docs", r -> r
+            .path("/v3/api-docs/category/**")
+            .filters(f -> f.rewritePath(
+                "/v3/api-docs/category(?<segment>/?.*)",
+                "/v3/api-docs${segment}"
+            ))
+            .uri("lb://category-service")
+        )
+        .route("meme-service-docs", r -> r
+            .path("/v3/api-docs/meme/**")
+            .filters(f -> f.rewritePath(
+                "/v3/api-docs/meme(?<segment>/?.*)",
+                "/v3/api-docs${segment}"
+            ))
+            .uri("lb://meme-service")
+        )
+        .build();
+    }
 
 }

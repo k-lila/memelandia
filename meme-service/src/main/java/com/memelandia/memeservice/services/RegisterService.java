@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.memelandia.memeservice.client.ICategoryClient;
 import com.memelandia.memeservice.client.IUserClient;
 import com.memelandia.memeservice.domain.Meme;
-import com.memelandia.memeservice.dtos.CategoryDTO;
-import com.memelandia.memeservice.dtos.UserDTO;
 import com.memelandia.memeservice.exceptions.DomainEntityNotFound;
 import com.memelandia.memeservice.exceptions.ServiceException;
 import com.memelandia.memeservice.repository.IMemeRepository;
@@ -49,9 +47,7 @@ public class RegisterService {
 
     public Meme registerMeme(@Valid Meme meme) {
         validateUser(meme.getUserID());
-        if (meme.getCategoryID() != null) {
-            validateCategory(meme.getCategoryID());
-        }
+        validateCategory(meme.getCategoryID());
         return this.memeRepository.insert(meme);
     }
 
@@ -60,9 +56,7 @@ public class RegisterService {
             throw new DomainEntityNotFound(meme.getClass(),"ID" , meme.getId());
         }
         validateUser(meme.getUserID());
-        if (meme.getCategoryID() != null) {
-            validateCategory(meme.getCategoryID());
-        }
+        validateCategory(meme.getCategoryID());
         return this.memeRepository.save(meme);
     }
 

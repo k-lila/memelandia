@@ -33,10 +33,12 @@ public class Meme {
     @Schema(description = "data de registro", nullable = false)
     private Instant registration_date;
 
+    @NotNull
     @Indexed
     @Schema(description = "ID da categoria")
     private String categoryID;
 
+    @NotNull
     @Indexed
     @Schema(description = "ID do usuário")
     private String userID;

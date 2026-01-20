@@ -9,3 +9,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:9091/eureka
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+    urls:
+      - name: user-service
+        url: /v3/api-docs/user
+      - name: category-service
+        url: /v3/api-docs/category
+      - name: meme-service
+        url: /v3/api-docs/meme
