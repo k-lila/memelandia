@@ -30,7 +30,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(value = "categories")
 public class CategoryController {
-
     private RegisterService registerService;
     private SearchService searchService;
 
@@ -88,5 +87,4 @@ public class CategoryController {
         Page<Category> categories = searchService.searchByName(name, pageable);
         return ResponseEntity.ok(categories);
     }
-
 }

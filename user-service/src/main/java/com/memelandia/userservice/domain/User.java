@@ -39,5 +39,4 @@ public class User {
     @NotNull
     @Schema(description = "Data de registro", nullable = false)
     private Instant registration_date;
-
 }

@@ -16,7 +16,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Meme {
-
     @Id
     private String id;
 
@@ -42,5 +41,4 @@ public class Meme {
     @Indexed
     @Schema(description = "ID do usuário")
     private String userID;
-
 }

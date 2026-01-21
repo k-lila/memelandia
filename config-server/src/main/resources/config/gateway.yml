@@ -21,3 +21,9 @@ springdoc:
         url: /v3/api-docs/category
       - name: meme-service
         url: /v3/api-docs/meme
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics

@@ -35,5 +35,4 @@ public class Category {
     @Indexed
     @Schema(description = "ID do usuário")
     private String userID;
-
 }

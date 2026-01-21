@@ -13,7 +13,6 @@ import com.memelandia.userservice.repository.IUserRepository;
 
 @Service
 public class SearchService {
-
     private IUserRepository userRepository;
 
     @Autowired
@@ -40,5 +39,4 @@ public class SearchService {
         }
         return user.get();    
     }
-
 }

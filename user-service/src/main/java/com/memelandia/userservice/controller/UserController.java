@@ -21,6 +21,7 @@ import com.memelandia.userservice.services.SearchService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+
 @Tag(
     name = "Users",
     description = "Endpoints do serviço de usuários"
@@ -28,7 +29,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(value = "users")
 public class UserController {
-
     private RegisterService registerService;
     private SearchService searchService;
 
@@ -78,5 +78,4 @@ public class UserController {
         registerService.deleteUser(userID);
         return ResponseEntity.noContent().build();
     }
-
 }

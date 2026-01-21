@@ -22,6 +22,7 @@ import com.memelandia.memeservice.services.SearchService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+
 @Tag(
     name = "Memes",
     description = "Endpoints do serviço de memes"
@@ -29,7 +30,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(value = "memes")
 public class MemeController {
-
     private RegisterService registerService;
     private SearchService searchService;
 
@@ -91,5 +91,4 @@ public class MemeController {
         Page<Meme> memes = searchService.searchByUser(userID, pageable);
         return ResponseEntity.ok(memes);
     }
-
 }

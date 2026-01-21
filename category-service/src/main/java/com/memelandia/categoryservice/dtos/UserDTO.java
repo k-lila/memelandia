@@ -11,5 +11,5 @@ import lombok.Setter;
 @Setter
 public class UserDTO {
     private String id;
-    private String username;
+    private String name;
 }

@@ -12,9 +12,7 @@ import com.memelandia.userservice.repository.IUserRepository;
 import jakarta.validation.Valid;
 
 @Service
-
 public class RegisterService {
-
     private IUserRepository userRepository;
 
     @Autowired

@@ -4,9 +4,10 @@ server:
 spring:
   application:
     name: category-service
-  # data:
-  #   mongodb:
-  #     uri: http://localhost:27020/teste
+  data:
+    mongodb:
+      auto-index-creation: true
+      # uri: http://localhost:27020/teste
 
 eureka:
   client:
@@ -16,3 +17,9 @@ eureka:
 springdoc:
   swagger-ui:
     enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
