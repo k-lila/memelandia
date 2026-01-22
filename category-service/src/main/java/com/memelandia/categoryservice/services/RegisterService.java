@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.memelandia.categoryservice.client.IUserClient;
 import com.memelandia.categoryservice.domain.Category;
-import com.memelandia.categoryservice.dtos.UserDTO;
 import com.memelandia.categoryservice.exceptions.DomainEntityNotFound;
 import com.memelandia.categoryservice.exceptions.ServiceException;
 import com.memelandia.categoryservice.repository.ICategoryRepository;
