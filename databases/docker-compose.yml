@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  user-mongo:
+    image: mongo:8.2
+    container_name: user-db
+    ports:
+      - "27020:27017"
+    volumes:
+      - user_mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user_service
+      MONGO_INITDB_ROOT_PASSWORD: user_1234321
+
+  meme-mongo:
+    image: mongo:8.2
+    container_name: meme-db
+    ports:
+      - "27021:27017"
+    volumes:
+      - meme_mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: meme_service
+      MONGO_INITDB_ROOT_PASSWORD: meme_1234321
+
+  category-mongo:
+    image: mongo:8.2
+    container_name: category-db
+    ports:
+      - "27022:27017"
+    volumes:
+      - category_mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: category_service
+      MONGO_INITDB_ROOT_PASSWORD: category_1234321
+
+volumes:
+  user_mongo_data:
+  meme_mongo_data:
+  category_mongo_data:
