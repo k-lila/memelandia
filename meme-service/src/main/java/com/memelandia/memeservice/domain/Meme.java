@@ -2,6 +2,7 @@ package com.memelandia.memeservice.domain;
 
 import java.time.Instant;
 
+import org.hibernate.validator.constraints.URL;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -27,6 +28,12 @@ public class Meme {
     @NotNull
     @Schema(description = "descrição", minContains = 0, maxContains = 500, nullable = false)
     private String description;
+
+    @NotNull
+    @URL
+    @Size(max = 2048)
+    @Schema(description = "url do meme", maxLength = 2048, nullable = false)
+    private String memeUrl;
 
     @NotNull
     @Schema(description = "data de registro", nullable = false)
