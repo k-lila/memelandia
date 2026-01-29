@@ -45,80 +45,83 @@ public class CategoryController {
     @Operation(summary = "Lista todas as categorias")
     @GetMapping
     public ResponseEntity<Page<Category>> searchAll(Pageable pageable) {
-        Page<Category> categories = searchService.searchAll(pageable);
         LOGGER.info(
-            "Requisição para listar categorias | Tamanho da página: {}, número da página: {}",
+            "| GET | buscar todas | tamanho e número da página: {}x{}",
             pageable.getPageSize(),
             pageable.getPageNumber()
         );
+        Page<Category> categories = searchService.searchAll(pageable);
         return ResponseEntity.ok(categories);
     }
 
     @Operation(summary = "Registrar uma categoria")
     @PostMapping
     public ResponseEntity<Category> registerCategory(@RequestBody @Valid Category category) {
-        Category registered = registerService.registerCategory(category);
         LOGGER.info(
-            "Categoria registrada | nome: {}, id: {}",
-            registered.getName(),
-            registered.getId()
+            "| POST | nome: {}",
+            category.getName()
         );
+        Category registered = registerService.registerCategory(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(registered);
     }
 
     @Operation(summary = "Buscar categoria por ID")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Category> searchById(@PathVariable(value = "id", required = true) String categoryID) {
-        Category category = searchService.searchById(categoryID);
         LOGGER.info(
-            "Busca por id | id: {}",
+            "| GET | buscar por ID | ID: {}",
             categoryID
         );
+        Category category = searchService.searchById(categoryID);
         return ResponseEntity.ok(category);
     }
 
     @Operation(summary = "Modificar uma categoria")
     @PutMapping
     public ResponseEntity<Category> updateCategory(@RequestBody @Valid Category category) {
-        Category updated  = registerService.updateCategory(category);
         LOGGER.info(
-            "Categoria modificada | nome: {}, id: {}",
+            "| PUT | nome: {}, id: {}",
             category.getName(),
             category.getId()
         );
+        Category updated  = registerService.updateCategory(category);
         return ResponseEntity.ok(updated);
     }
 
     @Operation(summary = "Deletar uma categoria")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> removeCategory(@PathVariable(value = "id", required = true) String categoryID) {
-        registerService.deleteCategory(categoryID);
         LOGGER.info(
-            "Categoria deletada | id: {}",
+            "| DELETE | id: {}",
             categoryID
         );
+        registerService.deleteCategory(categoryID);
         return ResponseEntity.noContent().build();
     }
 
     @Operation(summary = "Buscar categorias por usuário")
     @GetMapping(value = "/user/{userID}")
     public ResponseEntity<Page<Category>> searchByUser(@PathVariable(required = true) String userID, @ParameterObject Pageable pageable) {
-        Page<Category> categories = searchService.searchByUser(userID, pageable);
         LOGGER.info(
-            "Busca de categorias por usuário | usuário: {}",
-            userID
+            "| GET | buscar por usuário | ID: {} | tamanho e número da página: {}x{}",
+            userID,
+            pageable.getPageSize(),
+            pageable.getPageNumber()
         );
+        Page<Category> categories = searchService.searchByUser(userID, pageable);
         return ResponseEntity.ok(categories);
     }
 
     @Operation(summary = "Buscar categorias pelo nome")
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<Page<Category>> searchByName(@PathVariable(required = true) String name, @ParameterObject Pageable pageable) {
-        Page<Category> categories = searchService.searchByName(name, pageable);
         LOGGER.info(
-            "Busca de categorias pelo nome | nome: {}",
-            name
+            "| GET | buscar por nome | nome: {} | tamanho e número da página: {}x{}",
+            name,
+            pageable.getPageSize(),
+            pageable.getPageNumber()
         );
+        Page<Category> categories = searchService.searchByName(name, pageable);
         return ResponseEntity.ok(categories);
     }
 }

@@ -45,91 +45,104 @@ public class MemeController {
     @Operation(summary = "Lista todos os memes")
     @GetMapping
     public ResponseEntity<Page<Meme>> searchAll(Pageable pageable) {
-        Page<Meme> memes = searchService.searchAll(pageable);
         LOGGER.info(
-            "Requisição para listar memes | Tamanho da página: {}, número da página: {}",
+            "| GET | buscar todos | tamanho e número da página: {}x{}",
             pageable.getPageSize(),
             pageable.getPageNumber()
         );
+        Page<Meme> memes = searchService.searchAll(pageable);
         return ResponseEntity.ok(memes);
     }
 
     @Operation(summary = "Registrar um meme")
     @PostMapping
     public ResponseEntity<Meme> registerMeme(@RequestBody @Valid Meme meme) {
-        Meme registered = registerService.registerMeme(meme);
         LOGGER.info(
-            "Meme registrado | nome: {}, id: {}",
-            registered.getName(),
-            registered.getId()
+            "| POST | nome: {}",
+            meme.getName()
         );
+        Meme registered = registerService.registerMeme(meme);
         return ResponseEntity.status(HttpStatus.CREATED).body(registered);
     }
 
     @Operation(summary = "Buscar meme por ID")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Meme> searchById(@PathVariable(value = "id", required = true) String memeID) {
-        Meme meme = searchService.searchById(memeID);
         LOGGER.info(
-            "Busca por id | id: {}",
+            "| GET | buscar por ID | ID: {}",
             memeID
         );
+        Meme meme = searchService.searchById(memeID);
         return ResponseEntity.ok(meme);
-    }
-
-    @Operation(summary = "Buscar meme pelo nome")
-    @GetMapping(value = "/name/{name}")
-    public ResponseEntity<Page<Meme>> searchByName(@PathVariable String name, @ParameterObject Pageable pageable) {
-        Page<Meme> memes = searchService.searchByName(name, pageable);
-        LOGGER.info(
-            "Busca por nome | nome: {}",
-            name
-        );
-        return ResponseEntity.ok(memes);
     }
 
     @Operation(summary = "Modificar um meme")
     @PutMapping
     public ResponseEntity<Meme> updateMeme(@RequestBody @Valid Meme meme) {
-        Meme updated  = registerService.updateMeme(meme);
         LOGGER.info(
-            "Meme modificado | nome: {}, id: {}",
+            "| PUT | nome: {}, id: {}",
             meme.getName(),
             meme.getId()
         );
+        Meme updated  = registerService.updateMeme(meme);
         return ResponseEntity.ok(updated);
     }
 
     @Operation(summary = "Deletar um meme")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> removeMeme(@PathVariable(value = "id", required = true) String memeID) {
-        registerService.deleteMeme(memeID);
         LOGGER.info(
-            "Meme deletado | id: {}",
+            "| DELETE | id: {}",
             memeID
         );
+        registerService.deleteMeme(memeID);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Buscar meme pelo nome")
+    @GetMapping(value = "/name/{name}")
+    public ResponseEntity<Page<Meme>> searchByName(@PathVariable String name, @ParameterObject Pageable pageable) {
+        LOGGER.info(
+            "| GET | buscar por nome | nome: {} | tamanho e número da página: {}x{}",
+            name,
+            pageable.getPageSize(),
+            pageable.getPageNumber()
+        );
+        Page<Meme> memes = searchService.searchByName(name, pageable);
+        return ResponseEntity.ok(memes);
     }
 
     @Operation(summary = "Buscar memes por categoria")
     @GetMapping(value = "/category/{categoryID}")
     public ResponseEntity<Page<Meme>> searchByCategory(@PathVariable String categoryID, @ParameterObject Pageable pageable) {
-        Page<Meme> memes = searchService.searchByCategory(categoryID, pageable);
         LOGGER.info(
-            "Busca de memes por categoria | categoria: {}",
-            categoryID
+            "| GET | buscar por categoria | categoryID: {} | tamanho e número da página: {}x{}",
+            categoryID,
+            pageable.getPageSize(),
+            pageable.getPageNumber()
         );
+        Page<Meme> memes = searchService.searchByCategory(categoryID, pageable);
         return ResponseEntity.ok(memes);
     }
 
     @Operation(summary = "Buscar memes por usuário")
     @GetMapping(value = "/user/{userID}")
     public ResponseEntity<Page<Meme>> searchByUser(@PathVariable String userID, @ParameterObject Pageable pageable) {
-        Page<Meme> memes = searchService.searchByUser(userID, pageable);
         LOGGER.info(
-            "Busca de memes por usuário | usuário: {}",
-            userID
+            "| GET | buscar por usuário | userID: {} | tamanho e número da página: {}x{}",
+            userID,
+            pageable.getPageSize(),
+            pageable.getPageNumber()
         );
+        Page<Meme> memes = searchService.searchByUser(userID, pageable);
         return ResponseEntity.ok(memes);
+    }
+
+    @Operation(summary = "Meme aleatório")
+    @GetMapping(value = "/random")
+    public ResponseEntity<Meme> randomMeme() {
+        LOGGER.info("| Meme do dia! |");
+        Meme memeDoDia = searchService.randomMeme();
+        return ResponseEntity.ok(memeDoDia);
     }
 }

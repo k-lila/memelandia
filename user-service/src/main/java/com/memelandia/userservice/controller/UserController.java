@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @Tag(
-    name = "Users",
+    name = "Controller",
     description = "Endpoints do serviço de usuários"
 )
 @RestController
@@ -45,7 +45,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Page<User>> searchAll(Pageable pageable) {
         LOGGER.info(
-            "Requisição para listar usuários | Tamanho da página: {}, número da página: {}",
+            "| GET | buscar todos | tamanho e número da página: {}x{}",
             pageable.getPageSize(),
             pageable.getPageNumber()
         );
@@ -56,57 +56,53 @@ public class UserController {
     @Operation(summary = "Registrar novo usuário")
     @PostMapping
     public ResponseEntity<User> registerUser(@RequestBody @Valid User user) {
-        User registered = registerService.registerUser(user);
         LOGGER.info(
-            "Usuário registrado | nome: {}, id: {}",
-            registered.getName(),
-            registered.getId()
+            "| POST | nome: {}",
+            user.getName()
         );
+        User registered = registerService.registerUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(registered);
     }
 
     @Operation(summary = "Buscar usuário por ID")
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> searchById(@PathVariable(value = "id", required = true) String userID) {
-        User user = searchService.searchById(userID);
         LOGGER.info(
-            "Busca por id | id: {}",
+            "| GET | buscar por ID | ID: {}",
             userID
         );
+        User user = searchService.searchById(userID);
         return ResponseEntity.ok(user);
     }
 
     @Operation(summary = "Buscar usuário por CPF")
     @GetMapping(value = "/cpf/{cpf}")
     public ResponseEntity<User> searchByCPF(@PathVariable(value = "cpf", required = true) String cpf) {
+        LOGGER.info("| GET | busca por CPF");
         User user = searchService.searchByCPF(cpf);
-        LOGGER.info(
-            "Busca por usuário | cpf: {}",
-            cpf
-        );
         return ResponseEntity.ok(user);
     }
 
     @Operation(summary = "Modificar um usuário")
     @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody @Valid User user) {
-        User updated  = registerService.updateUser(user);
         LOGGER.info(
-            "Usuário modificado | nome: {}, id: {}",
+            "| PUT | nome: {}, id: {}",
             user.getName(),
             user.getId()
         );
+        User updated  = registerService.updateUser(user);
         return ResponseEntity.ok(updated);
     }
 
     @Operation(summary = "Deletar um usuário")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> removeUser(@PathVariable(value = "id", required = true) String userID) {
-        registerService.deleteUser(userID);
         LOGGER.info(
-            "Usuário deletado | id: {}",
+            "| DELETE | id: {}",
             userID
         );
+        registerService.deleteUser(userID);
         return ResponseEntity.noContent().build();
     }
 }
