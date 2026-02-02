@@ -30,7 +30,7 @@ public class SearchService {
     public Page<Meme> searchAll(Pageable pageable) {
         Page<Meme> page = memeRepository.findAll(pageable);
         LOGGER.info(
-            "| página encontrada | {}x{} | total: {}",
+            "| página encontrada | {}x{} | total (memes): {}",
             pageable.getPageSize(),
             pageable.getPageNumber(),
             memeRepository.count()
@@ -54,7 +54,7 @@ public class SearchService {
     public Page<Meme> searchByName(String name, Pageable pageable) {
         Page<Meme> memes = memeRepository.findByName(name, pageable);
         LOGGER.info(
-            "| página encontrada | {}x{} | total: {}, páginas: {}",
+            "| página encontrada | {}x{} | total (memes): {}, páginas: {}",
             pageable.getPageSize(),
             pageable.getPageNumber(),
             memes.getTotalElements(),
@@ -66,7 +66,7 @@ public class SearchService {
     public Page<Meme> searchByCategory(String categoryID, Pageable pageable) {
         Page<Meme> memes = memeRepository.findByCategoryID(categoryID, pageable);
         LOGGER.info(
-            "| página encontrada | {}x{} | total: {}, páginas: {}",
+            "| página encontrada | {}x{} | total (memes): {}, páginas: {}",
             pageable.getPageSize(),
             pageable.getPageNumber(),
             memes.getTotalElements(),
@@ -78,7 +78,7 @@ public class SearchService {
     public Page<Meme> searchByUser(String user, Pageable pageable) {
         Page<Meme> memes = memeRepository.findByUserID(user, pageable);
         LOGGER.info(
-            "| página encontrada | {}x{} | total: {}, páginas: {}",
+            "| página encontrada | {}x{} | total (memes): {}, páginas: {}",
             pageable.getPageSize(),
             pageable.getPageNumber(),
             memes.getTotalElements(),

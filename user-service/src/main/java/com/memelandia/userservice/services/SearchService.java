@@ -29,7 +29,7 @@ public class SearchService {
     public Page<User> searchAll(Pageable pageable) {
         Page<User> found = userRepository.findAll(pageable);
         LOGGER.info(
-            "| página encontrada | {}x{} | total: {}",
+            "| página encontrada | {}x{} | total (usuários): {}",
             pageable.getPageSize(),
             pageable.getPageNumber(),
             userRepository.count()

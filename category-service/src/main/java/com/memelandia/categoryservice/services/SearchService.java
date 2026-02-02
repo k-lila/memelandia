@@ -29,7 +29,7 @@ public class SearchService {
     public Page<Category> searchAll(Pageable pageable) {
         Page<Category> page = categoryRepository.findAll(pageable); 
         LOGGER.info(
-            "| página encontrada | {}x{} | total: {}",
+            "| página encontrada | {}x{} | total (categorias): {}",
             pageable.getPageSize(),
             pageable.getPageNumber(),
             categoryRepository.count()
@@ -53,7 +53,7 @@ public class SearchService {
     public Page<Category> searchByUser(String userID, Pageable pageable) {
         Page<Category> categories = categoryRepository.findByUserID(userID, pageable);
         LOGGER.info(
-            "| página encontrada | {}x{} | total: {}, páginas: {}",
+            "| página encontrada | {}x{} | total (categorias): {}, páginas: {}",
             pageable.getPageSize(),
             pageable.getPageNumber(),
             categories.getTotalElements(),
@@ -65,7 +65,7 @@ public class SearchService {
     public Page<Category> searchByName(String name, Pageable pageable) {
         Page<Category> categories = categoryRepository.findByName(name, pageable);
         LOGGER.info(
-            "| página encontrada | {}x{} | total: {}, páginas: {}",
+            "| página encontrada | {}x{} | total (categorias): {}, páginas: {}",
             pageable.getPageSize(),
             pageable.getPageNumber(),
             categories.getTotalElements(),

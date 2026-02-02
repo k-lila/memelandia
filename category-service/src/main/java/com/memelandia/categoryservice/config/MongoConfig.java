@@ -12,8 +12,8 @@ public class MongoConfig {
     
     @Bean
     public MongoClient mongoClient() {
-        // return MongoClients.create("mongodb://category_service:category_1234321@localhost:27022");
-        return MongoClients.create("mongodb+srv://memelandia:memelandia@memelandia.pr6cutx.mongodb.net/category-db?appName=memelandia");
+        return MongoClients.create("mongodb://category_service:category_1234321@localhost:27021");
+        // return MongoClients.create("mongodb+srv://memelandia:memelandia@memelandia.pr6cutx.mongodb.net/category-db?appName=memelandia");
     }
 
     @Bean
