@@ -1,5 +1,14 @@
 version: "3.9"
 
+networks:
+  spring-cloud-net:
+    name: spring-cloud-net
+    driver: bridge
+
+# networks:
+#   spring-cloud-net:
+#     external: true
+
 services:
   user-mongo:
     image: mongo:8.2
@@ -11,17 +20,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: user_service
       MONGO_INITDB_ROOT_PASSWORD: user_1234321
-
-  meme-mongo:
-    image: mongo:8.2
-    container_name: meme-db
-    ports:
-      - "27021:27017"
-    volumes:
-      - meme_mongo_data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: meme_service
-      MONGO_INITDB_ROOT_PASSWORD: meme_1234321
+    networks:
+      - spring-cloud-net
 
   category-mongo:
     image: mongo:8.2
@@ -33,6 +33,21 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: category_service
       MONGO_INITDB_ROOT_PASSWORD: category_1234321
+    networks:
+      - spring-cloud-net
+
+  meme-mongo:
+    image: mongo:8.2
+    container_name: meme-db
+    ports:
+      - "27021:27017"
+    volumes:
+      - meme_mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: meme_service
+      MONGO_INITDB_ROOT_PASSWORD: meme_1234321
+    networks:
+      - spring-cloud-net
 
 volumes:
   user_mongo_data:
