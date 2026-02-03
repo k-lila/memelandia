@@ -3,7 +3,7 @@ version: "3.9"
 networks:
   memelandia-net:
     name: memelandia-net
-    driver: bridge
+    external: true
 
 services:
   user-mongo:
