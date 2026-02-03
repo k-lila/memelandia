@@ -1,11 +1,8 @@
 version: "3.9"
 
-# networks:
-#   spring-cloud-net:
-#     driver: bridge
 networks:
-  spring-cloud-net:
-    name: spring-cloud-net
+  memelandia-net:
+    name: memelandia-net
     external: true
 
 services:
@@ -13,7 +10,7 @@ services:
     build: ./config-server
     container_name: config-server
     networks:
-      - spring-cloud-net
+      - memelandia-net
     ports:
       - "8888:8080"
     healthcheck:
@@ -27,7 +24,7 @@ services:
     build: ./discovery-server
     container_name: discovery-server
     networks:
-      - spring-cloud-net
+      - memelandia-net
     ports:
       - "9091:8080"
     depends_on:
@@ -46,7 +43,7 @@ services:
     build: ./gateway
     container_name: gateway
     networks:
-      - spring-cloud-net
+      - memelandia-net
     ports:
       - "8080:8080"
     depends_on:
@@ -66,7 +63,7 @@ services:
     build: ./user-service
     container_name: user-service
     networks:
-      - spring-cloud-net
+      - memelandia-net
     depends_on:
       discovery-server:
         condition: service_healthy
@@ -84,7 +81,7 @@ services:
     build: ./category-service
     container_name: category-service
     networks:
-      - spring-cloud-net
+      - memelandia-net
     depends_on:
       discovery-server:
         condition: service_healthy
@@ -102,7 +99,7 @@ services:
     build: ./meme-service
     container_name: meme-service
     networks:
-      - spring-cloud-net
+      - memelandia-net
     depends_on:
       discovery-server:
         condition: service_healthy

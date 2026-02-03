@@ -1,13 +1,9 @@
 version: "3.9"
 
 networks:
-  spring-cloud-net:
-    name: spring-cloud-net
+  memelandia-net:
+    name: memelandia-net
     driver: bridge
-
-# networks:
-#   spring-cloud-net:
-#     external: true
 
 services:
   user-mongo:
@@ -16,40 +12,40 @@ services:
     ports:
       - "27020:27017"
     volumes:
-      - user_mongo_data:/data/db
+      - user_db_data:/data/db
+    networks:
+      - memelandia-net
     environment:
       MONGO_INITDB_ROOT_USERNAME: user_service
       MONGO_INITDB_ROOT_PASSWORD: user_1234321
-    networks:
-      - spring-cloud-net
 
   category-mongo:
     image: mongo:8.2
     container_name: category-db
     ports:
-      - "27022:27017"
+      - "27021:27017"
     volumes:
-      - category_mongo_data:/data/db
+      - category_db_data:/data/db
+    networks:
+      - memelandia-net
     environment:
       MONGO_INITDB_ROOT_USERNAME: category_service
       MONGO_INITDB_ROOT_PASSWORD: category_1234321
-    networks:
-      - spring-cloud-net
 
   meme-mongo:
     image: mongo:8.2
     container_name: meme-db
     ports:
-      - "27021:27017"
+      - "27022:27017"
     volumes:
-      - meme_mongo_data:/data/db
+      - meme_db_data:/data/db
+    networks:
+      - memelandia-net
     environment:
       MONGO_INITDB_ROOT_USERNAME: meme_service
       MONGO_INITDB_ROOT_PASSWORD: meme_1234321
-    networks:
-      - spring-cloud-net
 
 volumes:
-  user_mongo_data:
-  meme_mongo_data:
-  category_mongo_data:
+  user_db_data:
+  category_db_data:
+  meme_db_data:
