@@ -1,5 +1,5 @@
 server:
-  port: 9091
+  port: 8080
 
 spring:
   application:
@@ -18,7 +18,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:9091/eureka
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://discovery-server:8080/eureka}
   server:
     wait-time-in-ms-when-sync-empty: 3000
 

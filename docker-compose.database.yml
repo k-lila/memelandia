@@ -1,5 +1,10 @@
 version: "3.9"
 
+networks:
+  memelandia-net:
+    name: memelandia-net
+    driver: bridge
+
 services:
   user-mongo:
     image: mongo:8.2
@@ -39,11 +44,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: meme_service
       MONGO_INITDB_ROOT_PASSWORD: meme_1234321
-
-networks:
-  memelandia-net:
-    name: memelandia-net
-    driver: bridge
 
 volumes:
   user_db_data:
