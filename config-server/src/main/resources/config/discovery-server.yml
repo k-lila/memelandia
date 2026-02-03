@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: discovery-server
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        max-attempts: 30
+        initial-interval: 1000
+        multiplier: 1.5
+        max-interval: 5000
 
 eureka:
   client:

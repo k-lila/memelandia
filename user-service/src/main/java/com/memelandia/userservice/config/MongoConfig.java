@@ -12,7 +12,7 @@ public class MongoConfig {
     
     @Bean
     public MongoClient mongoClient() {
-        // return MongoClients.create("mongodb://user_service:user_1234321@localhost:27022");
+        // return MongoClients.create("mongodb://user_service:user_1234321@localhost:27020");
         return MongoClients.create("mongodb+srv://memelandia:memelandia@memelandia.pr6cutx.mongodb.net/?appName=memelandia");
     }
 
