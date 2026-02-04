@@ -39,7 +39,9 @@ para derrubar os serviços:
 para derrubar os bancos de dados:
 
 - docker compose -f docker-compose.database.yml
-  ou, para excluir os volumes:
+
+ou, para excluir os volumes:
+
 - docker compose -f docker-compose.database.yml -v
 
 ## Endpoints disponíveis:
