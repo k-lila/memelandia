@@ -1,6 +1,6 @@
 # Memelândia
 
-Projeto em microsserviços em Java, Spring Boot e MongoDB. Configuração centralizada em um servidor de configuração,
+Projeto em microsserviços com Java, Spring Boot e MongoDB. Configuração centralizada em um servidor de configuração,
 serviço de descoberta com Eureka e comunicação externa com Gateway. Possui 3 serviços de domínio: usuários, memes e
 categorias de memes. O banco de dados utilizado é o MongoDB. Utiliza Zipkin para obsevabilidade, e Swagger-UI para
 documentação.
