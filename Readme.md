@@ -1,5 +1,3 @@
-[ Java 21 ] [ Spring Boot ] [ MongoDB ]
-
 # Memelândia
 
 Projeto em microsserviços, utilizando Java, Spring Boot e MongoDB. Configuração centralizada em um servidor de configuração,
@@ -21,17 +19,13 @@ Utiliza Zipkin para obsevabilidade, e Swagger-UI para documentação.
 1. Inicie as databases
    - docker compose up -d
 
-2. Inicie os serviços
-   Para cada serviço, execute
+2. Para cada serviço, execute
    - mvn spring-boot:run
 
 ## Endpoints disponíveis:
 
-| Serviço       | URL                                                                                        |
-| ------------- | ------------------------------------------------------------------------------------------ |
-| Gateway       | [http://localhost:8081](http://localhost:8081)                                             |
-| Eureka        | [http://localhost:9091](http://localhost:9091)                                             |
-| Config Server | [http://localhost:8888](http://localhost:8888)                                             |
-| Zipkin        | [http://localhost:9411](http://localhost:9411)                                             |
-| Swagger UI    | [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html) |
-| ------------- | ------------------------------------------------------------------------------------------ |
+- Gateway: http://localhost:8081
+- Eureka: http://localhost:9091
+- Config Server: http://localhost:8888
+- Zipkin: http://localhost:9411
+- Swagger UI: http://localhost:8081/swagger-ui/index.html
