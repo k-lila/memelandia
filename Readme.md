@@ -16,6 +16,8 @@ documentação.
 
 ## Execute
 
+O projeto possui 2 ambientes docker, um com acesso ao cluster do MongoDB Atlas, e outro com banco de dados local.
+
 ### Para utilizar o cluster do MongoDB Atlas
 
 - docker compose -f docker-compose.atlas.yml up -d --build
