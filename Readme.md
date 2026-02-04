@@ -22,6 +22,10 @@ O projeto possui 2 ambientes docker, um com acesso ao cluster do MongoDB Atlas, 
 
 - docker compose -f docker-compose.atlas.yml up -d --build
 
+para derrubar os serviços:
+
+- docker compose -f docker-compose.atlas.yml down
+
 ### Para utilizar database local
 
 1. Suba os serviços
@@ -38,11 +42,11 @@ para derrubar os serviços:
 
 para derrubar os bancos de dados:
 
-- docker compose -f docker-compose.database.yml
+- docker compose -f docker-compose.database.yml down
 
 ou, para excluir os volumes:
 
-- docker compose -f docker-compose.database.yml -v
+- docker compose -f docker-compose.database.yml down -v
 
 ## Endpoints disponíveis:
 
